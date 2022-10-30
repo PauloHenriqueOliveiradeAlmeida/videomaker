@@ -16,7 +16,10 @@ export default function Home() {
 			content += res.query.pages[i].extract.replace(/(\s\(.*?\))|<\w+(\s+("[^"]*"|'[^']*'|[^>])+)?>|<\/\w+>/gi, "").replace(/(\r\n|\n|\r)/gm, "");
 		}
 		content = sentences(content);
-		setWiki(content);
+		const watsonreq = await fetch("/api/watson", {
+			method: "POST",
+			body: JSON.stringify({content: content})
+		});
 	}
 
 	return (

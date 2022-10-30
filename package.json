@@ -12,7 +12,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.38.0",
-    "sbd": "^1.0.19"
+    "sbd": "^1.0.19",
+    "watson-developer-cloud": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "8.26.0",
