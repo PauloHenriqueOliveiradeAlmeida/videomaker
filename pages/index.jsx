@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { sentences } from 'sbd';
 
 export default function Home() {
 	const {register, handleSubmit} = useForm();
@@ -12,8 +13,9 @@ export default function Home() {
 		const res = await req.json()
 		let content = "";
 		for (let i in res.query.pages) {
-			content += res.query.pages[i].extract.replace(/(\s\(.*?\))|<\w+(\s+("[^"]*"|'[^']*'|[^>])+)?>|<\/\w+>/gi, "");
+			content += res.query.pages[i].extract.replace(/(\s\(.*?\))|<\w+(\s+("[^"]*"|'[^']*'|[^>])+)?>|<\/\w+>/gi, "").replace(/(\r\n|\n|\r)/gm, "");
 		}
+		content = sentences(content);
 		setWiki(content);
 	}
 

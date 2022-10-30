@@ -41,11 +41,6 @@
   align-items: center;
   flex-direction: column;
 }
-.form div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .form input, .form select {
   padding: 20px;
   height: 100%;
@@ -80,4 +75,5 @@
   background-color: blue;
   color: white;
   font-size: 20px;
+  cursor: pointer;
 }
