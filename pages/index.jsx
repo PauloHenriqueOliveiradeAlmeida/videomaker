@@ -2,7 +2,6 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { sentences } from 'sbd';
 
 export default function Home() {
 	const {register, handleSubmit} = useForm();
@@ -15,10 +14,12 @@ export default function Home() {
 		for (let i in res.query.pages) {
 			content += res.query.pages[i].extract.replace(/(\s\(.*?\))|<\w+(\s+("[^"]*"|'[^']*'|[^>])+)?>|<\/\w+>/gi, "").replace(/(\r\n|\n|\r)/gm, "");
 		}
-		content = sentences(content);
 		const watsonreq = await fetch("/api/watson", {
 			method: "POST",
-			body: JSON.stringify({content: content})
+			body: JSON.stringify({content: content}),
+			headers: {
+				"Content-Type": "application/json"
+			}
 		});
 	}
 
@@ -38,7 +39,6 @@ export default function Home() {
 					<div>
 						<input type="text" {...register("info")}/>
 						<select {...register("prefix")}>
-							<option disabled selected>Selecione o prefixo</option>
 							<option value="who">Quem é</option>
 							<option value="what">O que é</option>
 							<option value="history">História</option>
