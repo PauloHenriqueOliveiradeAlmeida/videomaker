@@ -21,6 +21,21 @@ export default function Home() {
 				"Content-Type": "application/json"
 			}
 		});
+
+		try {
+			const watsonres = await watsonreq.json();
+
+			const googlereq = await fetch("/api/google", {
+				method: "POST",
+				body: JSON.stringify({content: watsonres.datas, searchTerm: data.prefix}),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			})
+		}
+		catch {
+
+		}
 	}
 
 	return (

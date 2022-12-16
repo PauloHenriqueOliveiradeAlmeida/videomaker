@@ -61,5 +61,5 @@ export default async function Watson(request, response) {
     }
 
    
-    return response.json({sentences: datas.sentences});
+    return response.json({datas});
 }
